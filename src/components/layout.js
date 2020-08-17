@@ -8,6 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import Image from "../components/image"
 
 import Header from "./header"
 import "./layout.css"
@@ -18,6 +19,7 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
+          description
         }
       }
     }
@@ -26,6 +28,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
+      {/* <nav>{data.site.siteMetadata.description}</nav> */}
       <div
         style={{
           margin: `0 auto`,
@@ -33,11 +36,28 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
+        <main>
+          <div class="leftBox">{children}</div>
+          <div class="rightBox">
+            <div class="r_topBox">
+              <div>
+                <a href="https://twitter.com/log__jp">
+                  <Image />
+                </a>
+              </div>
+            </div>
+            <div class="r_underBox">
+              <p>
+                <a href="https://twitter.com/log__jp">@Log__jp</a>
+              </p>
+              <p>Philosophy/Programming/Hypnosis</p>
+            </div>
+          </div>
+        </main>
         <footer>
-          © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()}, @Log__jp All rights reserved.
           {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <a href="https://www.gatsbyjs.org">Built with Gatsby</a>
         </footer>
       </div>
     </>
